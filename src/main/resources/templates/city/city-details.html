@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div th:insert="header">...</div>
+<!--<div th:each="el : ${cities}">-->
+<!--    <h3 th:text="${el.name}"></h3>-->
+<!--    <input type="date" name="birthdate" placeholder="Введите дату основания" th:value="${el.getBirthdateString()}"-->
+<!--           disabled>-->
+<!--    <p>дата основания</p>-->
+<!--    <p th:text="${el.citizens}"/>-->
+<!--    <p>Кол-во жителей</p>-->
+<!--    <p th:text="${el.size}"/>-->
+<!--    <p>Площадь тыс км</p>-->
+<!--    <p th:text="${el.isCapital}"/>-->
+<!--    <p>Является ли столицей</p>-->
+<!--    <button type="button"-->
+<!--            class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">-->
+<!--        <a th:href="'/city/' + ${el.id} + '/edit'">Редактировать</a>-->
+<!--    </button>-->
+<!--    </span>-->
+<!--    <form th:action="'/city/' + ${el.id} + '/remove'" method="post">-->
+<!--        <button type="submit"-->
+<!--                class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">-->
+<!--            Удалить-->
+<!--        </button>-->
+<!--    </form>-->
+<!--</div>-->
+
+<div class="overflow-hidden bg-white shadow sm:rounded-lg" th:each="el : ${cities}">
+    <div class="px-4 py-5 sm:px-6">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Информация о городе</h3>
+        <p class="mt-1 max-w-2xl text-sm text-gray-500" th:text="${el.name}"></p>
+    </div>
+    <div class="border-t border-gray-200">
+        <dl>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">Дата основания</dt>
+                <input type="date" name="birthdate" placeholder="Введите дату основания"
+                       th:value="${el.getBirthdateString()}" class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"
+                       disabled>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">Население</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0" th:text="${el.citizens}"></dd>
+            </div>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">Площадь в тысячах километров<sup><small>2</small></sup>
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0" th:text="${el.size}"></dd>
+            </div>
+            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">Является ли столицей</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0" th:text="${el.isCapital}"></dd>
+            </div>
+            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500 flex space-x-12">
+                    <button type="button"
+                            class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        <a th:href="'/city/' + ${el.id} + '/edit'">Редактировать</a>
+                    </button>
+                    </span>
+                    <form th:action="'/city/' + ${el.id} + '/remove'" method="post">
+                        <button type="submit"
+                                class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                            Удалить
+                        </button>
+                    </form>
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"></dd>
+            </div>
+        </dl>
+    </div>
+</div>
+</body>
+</html>

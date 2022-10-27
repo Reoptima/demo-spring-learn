@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>City</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div th:insert="header">...</div>
+<h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl">Все
+    города</h1>
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg" style="width: 500px">
+    <table class="w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <tr>
+            <th scope="col" class="py-3 px-6">
+                Имя
+            </th>
+            <th scope="col" class="py-3 px-6">
+                <a href="/city/add" class="font-medium text-blue-600 hover:underline">Добавить город</a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="el : ${cities}" class="bg-white border-b hover:bg-gray-50">
+            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap" th:text="${el.name}">
+            </th>
+            <td class="py-4 px-6 text-right">
+                <a th:href="${'/city/' + el.id}" class="font-medium text-blue-600 hover:underline">Details</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/city/filter"
+       class="inline-flex justify-center rounded-md py-1 px-4 text-base font-semibold tracking-tight shadow-sm focus:outline-none bg-blue-600 text-white hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 active:bg-blue-700 active:text-white/80 disabled:opacity-30 disabled:hover:bg-blue-600">Поиск
+        пользователей</a>
+</div>
+</body>
+</html>

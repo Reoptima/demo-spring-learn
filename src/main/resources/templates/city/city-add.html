@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add city</title>
+    <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css"/>
+</head>
+<body>
+<div th:insert="header">...</div>
+<form th:action="${'/city/add'}" method="post" th:object="${cities}">
+    <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+    <div style="color: red" th:if="${#fields.hasErrors('citizens')}" th:errors="*{citizens}"></div>
+    <div style="color: red" th:if="${#fields.hasErrors('size')}" th:errors="*{size}"></div>
+    <div style="color: red" th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}"></div>
+
+    <div class="overflow-hidden bg-white shadow sm:rounded-lg">
+        <div class="px-4 py-5 sm:px-6">
+            <h3 class="text-lg font-medium leading-6 text-gray-900">Информация о городе</h3>
+            <p class="mt-1 max-w-2xl text-sm text-gray-500"></p>
+        </div>
+        <div class="border-t border-gray-200">
+            <dl>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Название</dt>
+                    <input th:field="*{name}" type="text" name="name" autocomplete="none" placeholder="Введите название"
+                           required
+                           class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+
+                    </div>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Дата основания</dt>
+                    <input type="date" name="birthdate" th:field="*{birthdate}" required
+                           class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"/>
+
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Население</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                        <input th:field="*{citizens}" minlength="3" maxlength="50" type="number" name="citizens"
+                               step="1" placeholder="Введите жителей"
+                               required
+                               class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"/>
+                    </dd>
+                </div>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Площадь в тысячах
+                        километров<sup><small>2</small></sup>
+                    </dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                        <input th:field="*{size}" type="number" minlength="3" maxlength="50" name="size" step="0.01"
+                               placeholder="Введите площадь тыс км"
+                               required
+                               class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"/>
+                    </dd>
+                </div>
+                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500">Является ли столицей</dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                        <select th:field="*{isCapital}"
+                                class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                            <option value="1">Столица</option>
+                            <option value="0">Не столица</option>
+                        </select>
+                    </dd>
+                </div>
+                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt class="text-sm font-medium text-gray-500 flex space-x-12">
+                        <button type="submit"
+                                class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                            Добавить город
+                        </button>
+                        </span>
+                    </dt>
+                    <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"></dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+</form>
+
+
+<!--    <input th:field="*{name}" type="text" name="name" placeholder="Введите название"/>  <br>-->
+<!--        <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>-->
+<!--    <input type="date" name="birthdate" placeholder="Введите дату основания"/> <p>Введите дату основания</p><br>-->
+<!--    <select name="isCapital">-->
+<!--        <option value="1">Столица</option>-->
+<!--        <option value="0">Не столица</option>-->
+<!--    </select> <br>-->
+<!--    <input th:field="*{citizens}" minlength="3" maxlength="50" type="number" name="citizens" step="1" placeholder="Введите жителей"/>-->
+<!--        <div style="color: red" th:if="${#fields.hasErrors('citizens')}" th:errors="*{citizens}"></div>-->
+<!--    <input th:field="*{size}" type="number" minlength="3" maxlength="50" name="size" step="0.01" placeholder="Введите площадь тыс км"/>-->
+<!--        <div style="color: red" th:if="${#fields.hasErrors('size')}" th:errors="*{size}"></div>-->
+<!--    <br>-->
+<!--    <button type="submit">Добавить город</button>-->
+</body>
+</html>

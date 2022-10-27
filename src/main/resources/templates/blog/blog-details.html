@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Детали</title>
+</head>
+<body>
+<div th:insert="header">...</div>
+<div th:insert="header">...</div>
+<div th:each="el : ${post}">
+    <h3 th:text="${el.title}"></h3>
+    <p th:text="${el.anons}"></p>
+    <p th:text="${el.full_text}"></p>
+    <span class="hidden sm:block">
+    <button type="button"
+            class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+        <a th:href="'/blog/' + ${el.id} + '/edit'">Редактировать</a>
+    </button>
+    </span>
+    <form th:action="'/blog/' + ${el.id} + '/remove'" method="post">
+        <span class="hidden sm:block">
+        <button type="submit"
+                class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Удалить</button>
+        </span>
+    </form>
+</div>
+</body>
+</html>

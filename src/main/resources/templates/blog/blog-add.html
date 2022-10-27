@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add city</title>
+</head>
+<body>
+<div th:insert="header">...</div>
+<form th:action="${'/blog/add'}" method="post" th:object="${post}">
+    <input type="text" name="name" placeholder="Введите название"/> <br>
+    <div style="color: red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+    <input type="date" name="birthdate" placeholder="Введите дату основания"/>
+    <p>Введите дату основания</p><br>
+    <select name="isCapital">
+        <option value="1">Столица</option>
+        <option value="0">Не столица</option>
+    </select> <br>
+    <input type="number" name="citizens" step="1" placeholder="Введите жителей"/>
+    <input type="number" name="size" step="0.01" placeholder="Введите площадь тыс км"/>
+    <br>
+    <button type="submit">Добавить город</button>
+</form>
+</body>
+</html>
