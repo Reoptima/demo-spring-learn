@@ -87,23 +87,6 @@ public class UsersController {
         model.addAttribute("cities", cities);
         return "user/user-edit";
     }
-
-    //    @PostMapping("/user/{id}/edit")
-//    public String userPostUpdate(@PathVariable(value = "id") long id,
-//                                 @RequestParam String username,
-//                                 @RequestParam Date birthdate,
-//                                 @RequestParam Boolean gender,
-//                                 @RequestParam int height,
-//                                 @RequestParam double salary, Model model) {
-//        User user = userRepository.findById(id).orElseThrow();
-//        user.setUsername(username);
-//        user.setBirthdate(birthdate);
-//        user.setGender(gender);
-//        user.setHeight(height);
-//        user.setSalary(salary);
-//        userRepository.save(user);
-//        return "redirect:/user";
-//    }
     @PostMapping("/user/{id}/edit")
     public String userPostUpdate(@ModelAttribute("user") @Valid User user, Model model, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
